@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import {FormControl} from '@angular/forms';
+
 
 import { ModalComponent } from './modal/modal.component';
 
@@ -12,27 +14,34 @@ import data from '../assets/json/data.json';
 })
 export class AppComponent {
   title = 'cinema';
-  imageAdres: string[] =[];
+  imageAdres: string[] = [];
   bestFilm: any | null = null;
-  data = data;
+  data:any[] = data;
 
-  constructor(public dialog: MatDialog) {
+  value = '';
+
+  toppings = new FormControl('');
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+
+  constructor(public dialog: MatDialog,
+  ) {
     for (let i = 0; i < data.length; i++) {
       this.imageAdres.push("../assets/images/" + (i + 1) + ".jpeg")
     }
     this.getBestFilmFromLocalStorage();
   }
 
-  openDialog(id:number): void {
+  openDialog(id: number): void {
     const dialogRef = this.dialog.open(ModalComponent, {
-      data:this.data[id],
+      data: this.data[id],
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // if(result){
-      //   console.log(result);
-      // }
+      if (result) {
+        console.log("!!!", result);
+      }
       this.getBestFilmFromLocalStorage();
     });
   }

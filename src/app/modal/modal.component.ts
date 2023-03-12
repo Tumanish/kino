@@ -21,12 +21,13 @@ export class ModalComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
     this.filmData = data;
+    console.log(dialogRef);
     // this.setBestFilmToLocalStorage(data);
   }
 
   onNoClick(): void {
     console.log("close");
-    this.dialogRef.close();
+    this.dialogRef.close(this.data);
   }
 
   selectBestFilm(){
