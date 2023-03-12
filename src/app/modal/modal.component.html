@@ -1,0 +1,35 @@
+<section class="card__modal-choice">
+	<div class="card__modal-wrapper">
+		<div class="card__modal-images">
+			<img src="../../assets/images/10.jpeg" class="card__modal-image" alt="">
+		</div>
+		<div class="card__modal-item">
+			<h2 class="card__modal-name">{{filmData.name}}</h2>
+			<p class="card__modal-genre">{{filmData.genre}}</p>
+			<p class="card__modal-year">{{filmData.year}}</p>
+			<p class="card__modal-description">{{filmData.description}}</p>
+			<div class="card__modal-btn">
+				<button class="card__modal-blue" (click)="selectBestFilm()">Выбрать лучшим фильмом</button>
+				<button class="card__modal-red" (click)="onNoClick()">Закрыть</button>
+			</div>
+		</div>
+	</div>
+  </section>
+  
+  <section class="card__modal-delete">
+	<div class="card__modal-wrapper">
+		<div class="card__modal-images">
+			<img src="../../assets/images/10.jpeg" class="card__modal-image" alt="">
+		</div>
+		<div class="card__modal-item">
+			<h2 class="card__modal-name">Список Шиндлера</h2>
+			<p class="card__modal-genre">драма, биография, история, военный</p>
+			<p class="card__modal-year">1993</p>
+			<p class="card__modal-description">Фильм рассказывает реальную историю загадочного Оскара Шиндлера, члена<br> нацистской партии, преуспевающего фабриканта, спасшего во время Второй<br>мировой войны почти 1200 евреев.</p>
+			<div class="card__modal-btn">
+				<button class="card__modal-red">Выбрать лучшим фильмом</button>
+				<button class="card__modal-red">Закрыть</button>
+			</div>
+		</div>
+	</div>
+  </section>

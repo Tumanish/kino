@@ -1,0 +1,87 @@
+.card__modal-choice {
+    width: 656px;
+    padding: 15px 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
+    border-radius: 10px;
+}
+
+.card__modal-delete {
+    width: 656px;
+    padding: 15px 20px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(29, 24, 56, 0.1);
+    border-radius: 10px;
+}
+
+
+.card__modal-wrapper {
+    display: flex;
+}
+
+
+.card__modal-image {
+    width: 150px;
+    height: 225px;
+    border-radius: 5px;
+}
+
+.card__modal-item {
+    margin-left: 20px;
+    width: 546px;
+}
+
+.card__modal-name {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 22px;
+    color: #1D1838;
+    margin-bottom: 10px;
+}
+
+.card__modal-genre {
+    font-weight: 400;
+    font-size: 12px;
+    color: #1D1838;
+    margin-bottom: 10px;
+}   
+
+.card__modal-year {
+    font-weight: 400;
+    font-size: 12px;
+    color: #1D1838;
+    margin-bottom: 10px;
+}
+
+.card__modal-description {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #1D1838;
+    margin-bottom: 67px;
+}
+
+.card__modal-btn {
+    display: flex;
+    justify-content: end;
+    gap: 18px;
+}
+
+.card__modal-blue {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    color: #3F51B5;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.card__modal-red {
+    font-weight: 400;
+    font-size: 14px;
+    color: #FF4081;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
