@@ -1,6 +1,6 @@
 <section class="card__wrapper">
   <h1 class="card__title">Популярные фильмы</h1>
-  
+
   <mat-form-field appearance="fill">
     <mat-label>Toppings</mat-label>
     <mat-select [formControl]="toppings" multiple>
@@ -10,7 +10,7 @@
           (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
         </span>
       </mat-select-trigger>
-      <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      <mat-option *ngFor="let topping of toppingList" [value]="topping" (click)="test()">{{topping}}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -24,19 +24,17 @@
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
-  
-  
-  
-  
+
+
+
+
   <div class="card__grid">
-    <div class="card__item" *ngFor="let item of data; let i = index" (click)="openDialog(i)">
-      <img src={{imageAdres[i]}} class="card__image" alt="">
+    <!-- <div class="card__item" *ngFor="let item of displayData; let i = index" (click)="openDialog(i)"> -->
+    <div class="card__item" *ngFor="let item of displayData" (click)="openDialog(item)">
+      <img src={{item.imageUrl}} class="card__image" alt="">
       <h2 class="card__name">{{item.name}}</h2>
-      <p class="card__description">{{item.genre}}</p>
+      <p class="card__description">{{item.genreStr}}</p>
       <p class="card__year">{{item.year}}</p>
-      <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
-      <mat-icon>favorite</mat-icon>
-      </button>
     </div>
   </div>
 
@@ -49,4 +47,8 @@
       <p class="card__year-down">{{bestFilm.year}}</p>
     </div>
   </div>
+
+  <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
 </section>

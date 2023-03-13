@@ -7,21 +7,29 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
+  // TO DO добавить класс 
   filmData = {
+    id:-1,
     name:"",
     genre:"",
     year:"",
-    description:""
+    description:"",
+    genreStr: [""],
+    imageUrl:""
   };
 
-  // constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  bestFilmFlag = false;
 
   constructor(
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
+    console.log("!!!!!",data);
     this.filmData = data;
-    console.log(dialogRef);
+
+
+    this.testFilm();
+
     // this.setBestFilmToLocalStorage(data);
   }
 
@@ -33,10 +41,27 @@ export class ModalComponent {
   selectBestFilm(){
     this.setBestFilmToLocalStorage(this.data);
     console.log("SELECT", this.data);
+    this.dialogRef.close(this.data);
+  }
+
+  removeFromBestFilm(){
+    console.log("removeFromBestFilm");
+    localStorage.clear()
+    this.testFilm();
+    this.dialogRef.close(this.data);
   }
 
   setBestFilmToLocalStorage(film: any) {
     localStorage.setItem("bestFilm", JSON.stringify(film))
     // this.getBestFilmFromLocalStorage();
+  }
+
+  testFilm(){
+    let testFilm = localStorage.getItem("bestFilm");
+    if (testFilm){
+      if(JSON.parse(testFilm).id == this.filmData.id){
+        this.bestFilmFlag = true;
+      }
+    }
   }
 }

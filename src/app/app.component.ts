@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {FormControl} from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 
 import { ModalComponent } from './modal/modal.component';
@@ -12,35 +12,92 @@ import data from '../assets/json/data.json';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   title = 'cinema';
+
   imageAdres: string[] = [];
+
   bestFilm: any | null = null;
-  data:any[] = data;
+
+  data: any[] = data; //  from json
+
+  displayData: any[] = [];
 
   value = '';
 
   toppings = new FormControl('');
-  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+  toppingList: string[] = [
+    "драма",
+    "биография",
+    "история",
+    "фэнтези",
+    "приключения",
+    "боевик",
+    "мультфильм",
+    "комедия",
+    "триллер",
+    "детектив",
+    "фантастика",
+  ];
 
 
   constructor(public dialog: MatDialog,
   ) {
     for (let i = 0; i < data.length; i++) {
-      this.imageAdres.push("../assets/images/" + (i + 1) + ".jpeg")
+      this.imageAdres.push(this.imageAdresStringByID(i + 1))
     }
     this.getBestFilmFromLocalStorage();
+    this.displayDataFromJson();
+
+
+    // this.genreStrByNumber([1,2,3])
   }
 
-  openDialog(id: number): void {
+  imageAdresStringByID(id: number): string {
+    let result = "../assets/images/" + (id) + ".jpeg"
+    return result;
+  }
+
+  genreStrByNumber(numArr: number[]): string[] {
+    let template = ["нет", "драма", "биография", "история", "фэнтези", "приключения", "боевик", "мультфильм", "комедия", "триллер", "детектив", "фантастика",];
+    let result: string[] = [];
+    for (let i = 0; i < numArr.length; i++) {
+      result.push(template[numArr[i]])
+    }
+    // console.log(result);
+    return result;
+  }
+
+  filterByGenreStr(genryStringArray: string[]) {  }
+
+
+  displayDataFromJson() {
+    for (let i = 0; i < this.data.length; i++) {
+      this.displayData.push({
+        id: this.data[i].id,
+        name: this.data[i].name,
+        year: this.data[i].year,
+        description: this.data[i].description,
+        genre: this.data[i].genre,
+        genreStr: this.genreStrByNumber(this.data[i].genre),
+        imageUrl: this.imageAdresStringByID(this.data[i].id)
+      })
+    }
+
+    // console.log(this.displayData);
+  }
+
+
+  openDialog(item: any): void {
     const dialogRef = this.dialog.open(ModalComponent, {
-      data: this.data[id],
+      data: item,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       if (result) {
-        console.log("!!!", result);
+        // console.log("!!!", result);
       }
       this.getBestFilmFromLocalStorage();
     });
@@ -49,16 +106,19 @@ export class AppComponent {
   setBestFilmToLocalStorageById(id: number) {
     localStorage.setItem("bestFilm", JSON.stringify(data[id]))
     this.getBestFilmFromLocalStorage();
-    console.log(this.bestFilm);
+    // console.log(this.bestFilm);
   }
 
   getBestFilmFromLocalStorage() {
     let item = localStorage.getItem("bestFilm");
     if (item) {
       this.bestFilm = JSON.parse(item);
-      console.log("Сработал парсер Json");
+      // console.log("Сработал парсер Json");
     }
   }
 
+  test() {
+    console.log(this.toppings.value);
+  }
 
 }
