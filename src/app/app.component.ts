@@ -48,12 +48,12 @@ export class AppComponent {
   }
 
   genreStrByNumber(numArr: number[]): string[] {
-    let template = ["нет", "драма", "биография", "история", "фэнтези", "приключения", "боевик", "мультфильм", "комедия", "триллер", "детектив", "фантастика",];
+    // let template = ["нет", "драма", "биография", "история", "фэнтези", "приключения", "боевик", "мультфильм", "комедия", "триллер", "детектив", "фантастика",];
+    // for (let i = 0; i < numArr.length; i++) {    result.push(template[numArr[i]])  }
     let result: string[] = [];
     for (let i = 0; i < numArr.length; i++) {
-      result.push(template[numArr[i]])
+      result.push(this.toppingList[numArr[i]-1]) 
     }
-    // console.log(result);
     return result;
   }
 
@@ -72,7 +72,6 @@ export class AppComponent {
           result.push(v)
         }
       })
-      console.log(genryStringArray.length,result,genryStringArray);
       this.displayData = result;
     } else {
       this.displayDataFromJson();
@@ -95,7 +94,6 @@ export class AppComponent {
   }
 
   openDialog(item: any): void {
-    console.log(item);
     const dialogRef = this.dialog.open(ModalComponent, {
       data: item,
     });
@@ -115,6 +113,7 @@ export class AppComponent {
       this.heartID =this.bestFilm.id 
     } else {
       this.bestFilm = null;
+      this.heartID = 0;
     }
   }
 

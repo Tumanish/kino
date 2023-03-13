@@ -7,9 +7,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent {
-  // TO DO добавить класс 
   filmData:any 
-
   bestFilmFlag = false;
 
   constructor(
@@ -21,20 +19,17 @@ export class ModalComponent {
   }
 
   onNoClick(): void {
-    console.log("close");
-    this.dialogRef.close(this.data);
+    this.dialogRef.close();
   }
 
   selectBestFilm(){
     localStorage.setItem("bestFilm", JSON.stringify(this.filmData))
-    console.log("Выбран: ", this.filmData);
     this.dialogRef.close(this.data);
   }
 
   removeFromBestFilm(){
-    console.log("removeFromBestFilm");
     localStorage.clear()
-    this.dialogRef.close(this.data);
+    this.dialogRef.close();
   }
 
   testFilm(){

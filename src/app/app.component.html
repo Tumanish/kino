@@ -17,7 +17,7 @@
   <mat-form-field class="example-form-field">
     <mat-label>Поиск</mat-label>
     <input matInput type="text" [(ngModel)]="value" (ngModelChange)="findFilm($event)">
-    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''" (click)="test()">
       <mat-icon>close</mat-icon>
     </button>
   </mat-form-field>
@@ -28,7 +28,7 @@
       <h2 class="card__name">{{item.name}}</h2>
       <p class="card__description">{{item.genreStr.join(" ")}}</p>
       <p class="card__year">{{item.year}}</p>
-      <button  *ngIf="heartID==item.id" mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
+      <button class="heart_butt" *ngIf="heartID==item.id" mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
         <mat-icon>favorite</mat-icon>
       </button>
     </div>
@@ -43,9 +43,5 @@
       <p class="card__year-down">{{bestFilm.year}}</p>
     </div>
   </div>
-
-  <!-- <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button> -->
 
 </section>
