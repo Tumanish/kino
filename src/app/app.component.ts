@@ -69,7 +69,57 @@ export class AppComponent {
     return result;
   }
 
-  filterByGenreStr(genryStringArray: string[]) {  }
+
+
+
+  filterByGenreStr(genryStringArray: string[]|string) {
+    let result:any[] = [];
+    console.log("!!!", typeof genryStringArray, genryStringArray);
+    if (Array.isArray(genryStringArray)) {
+    this.displayData.forEach((v, i, arr) => {
+      // console.log(v.genreStr);
+      // console.log(genryStringArray);
+
+      for(let i = 0; i<v.genreStr.length;i++){
+        // let test = genryStringArray.length;
+        let test = 0;
+        // console.log(v.genreStr[i]);
+        for (let j = 0; j < genryStringArray.length; j++) {
+          // console.log(genryStringArray[j]);
+          if(v.genreStr[i] == genryStringArray[j]){test++};
+        }
+        if(test == genryStringArray.length){
+          result.push(v);
+        }
+      }  
+
+
+      
+    })
+      this.displayData = result;
+    console.log(result);
+
+
+    } else{
+      this.displayDataFromJson();
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   displayDataFromJson() {
@@ -114,11 +164,16 @@ export class AppComponent {
     if (item) {
       this.bestFilm = JSON.parse(item);
       // console.log("Сработал парсер Json");
+    } else {
+      this.bestFilm = null;
     }
   }
 
   test() {
-    console.log(this.toppings.value);
+    console.log(typeof this.toppings.value, this.toppings.value);
+    if(this.toppings.value?.length){
+      this.filterByGenreStr(this.toppings.value)
+    }
   }
 
 }
