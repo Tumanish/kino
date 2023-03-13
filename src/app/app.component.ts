@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 
-
 import { ModalComponent } from './modal/modal.component';
 
-import data from '../assets/json/data.json';
+import dataJSON from '../assets/json/data.json';
 
 @Component({
   selector: 'app-root',
@@ -15,17 +14,12 @@ import data from '../assets/json/data.json';
 
 export class AppComponent {
   title = 'cinema';
-  
   bestFilm: any | null = null;
-
-  data: any[] = data; //  from json
-
+  data: any[] = dataJSON; //  from json
   displayData: any[] = [];
-
   value = '';
 
-  toppings:FormControl;
-  
+  toppings: FormControl;
   toppingList: string[] = [
     "драма",
     "биография",
@@ -39,7 +33,6 @@ export class AppComponent {
     "детектив",
     "фантастика",
   ];
-
 
   constructor(public dialog: MatDialog,
   ) {
@@ -59,6 +52,7 @@ export class AppComponent {
     for (let i = 0; i < numArr.length; i++) {
       result.push(template[numArr[i]])
     }
+    console.log(result.join(""));
     return result;
   }
 
@@ -83,7 +77,6 @@ export class AppComponent {
     }
   }
 
-
   displayDataFromJson() { // reset view
     this.displayData = [];
     for (let i = 0; i < this.data.length; i++) {
@@ -93,28 +86,24 @@ export class AppComponent {
         year: this.data[i].year,
         description: this.data[i].description,
         genre: this.data[i].genre,
-        genreStr: this.genreStrByNumber(this.data[i].genre),
+        genreStr: this.genreStrByNumber(this.data[i].genre).join(" "),
         imageUrl: this.imageAdresStringByID(this.data[i].id)
       })
     }
   }
 
-
   openDialog(item: any): void {
+    console.log(item);
     const dialogRef = this.dialog.open(ModalComponent, {
       data: item,
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        
       }
       this.getBestFilmFromLocalStorage();
     });
-  }
-
-  setBestFilmToLocalStorageById(id: number) {
-    localStorage.setItem("bestFilm", JSON.stringify(data[id]))
-    this.getBestFilmFromLocalStorage();
   }
 
   getBestFilmFromLocalStorage() {
@@ -138,13 +127,12 @@ export class AppComponent {
   }
 
   findFilm(x: any) {
-    //TO DO пробелы не четкий поиск
     this.test();
-    let result:any = [];
+    let result: any = [];
     if (this.displayData) {
       for (let i = 0; i < this.displayData.length; i++) {
         let test = this.displayData[i].name.toLowerCase().indexOf(x.toLowerCase());
-        if(test+1){
+        if (test + 1) {
           result.push(this.displayData[i]);
         }
       }
