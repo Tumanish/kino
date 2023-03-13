@@ -26,20 +26,20 @@
     <div class="card__item" *ngFor="let item of displayData" (click)="openDialog(item)">
       <img src="{{item.imageUrl}}" class="card__image" alt="">
       <h2 class="card__name">{{item.name}}</h2>
-      <p class="card__description">{{item.genreStr}}</p>
+      <p class="card__description">{{item.genreStr.join(" ")}}</p>
       <p class="card__year">{{item.year}}</p>
-      <!-- <button mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
+      <button  mat-icon-button matTooltip="Basic" aria-label="Example icon-button with a heart icon">
         <mat-icon>favorite</mat-icon>
-      </button> -->
+      </button>
     </div>
   </div>
 
-  <div class="card__grid-down">
+  <div (click)="openDialog(bestFilm)" class="card__grid-down" >
     <h1 class="card__title-down">Самый лучший фильм</h1>
     <div class="card__item-down" *ngIf="bestFilm">
       <img src="{{bestFilm.imageUrl}}" class="card__image-down" alt="">
       <h2 class="card__name-down">{{bestFilm.name}}</h2>
-      <p class="card__description-down">{{bestFilm.genreStr}}</p>
+      <p class="card__description-down">{{bestFilm.genreStr.join(" ")}}</p>
       <p class="card__year-down">{{bestFilm.year}}</p>
     </div>
   </div>

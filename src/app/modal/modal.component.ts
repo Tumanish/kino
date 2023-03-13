@@ -26,8 +26,8 @@ export class ModalComponent {
   }
 
   selectBestFilm(){
-    localStorage.setItem("bestFilm", JSON.stringify(this.data))
-    console.log("Выбран: ", this.data);
+    localStorage.setItem("bestFilm", JSON.stringify(this.filmData))
+    console.log("Выбран: ", this.filmData);
     this.dialogRef.close(this.data);
   }
 

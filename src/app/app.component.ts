@@ -52,7 +52,7 @@ export class AppComponent {
     for (let i = 0; i < numArr.length; i++) {
       result.push(template[numArr[i]])
     }
-    console.log(result.join(""));
+    // console.log(result);
     return result;
   }
 
@@ -71,6 +71,7 @@ export class AppComponent {
           result.push(v)
         }
       })
+      console.log(genryStringArray.length,result,genryStringArray);
       this.displayData = result;
     } else {
       this.displayDataFromJson();
@@ -86,7 +87,7 @@ export class AppComponent {
         year: this.data[i].year,
         description: this.data[i].description,
         genre: this.data[i].genre,
-        genreStr: this.genreStrByNumber(this.data[i].genre).join(" "),
+        genreStr: this.genreStrByNumber(this.data[i].genre),
         imageUrl: this.imageAdresStringByID(this.data[i].id)
       })
     }
@@ -100,7 +101,7 @@ export class AppComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        
+        //
       }
       this.getBestFilmFromLocalStorage();
     });
