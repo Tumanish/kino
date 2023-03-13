@@ -18,6 +18,7 @@ export class AppComponent {
   data: any[] = dataJSON; //  from json
   displayData: any[] = [];
   value = '';
+  heartID = 0;
 
   toppings: FormControl;
   toppingList: string[] = [
@@ -111,6 +112,7 @@ export class AppComponent {
     let item = localStorage.getItem("bestFilm");
     if (item) {
       this.bestFilm = JSON.parse(item);
+      this.heartID =this.bestFilm.id 
     } else {
       this.bestFilm = null;
     }
